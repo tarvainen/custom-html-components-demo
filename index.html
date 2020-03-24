@@ -6,7 +6,19 @@
   </head>
 
   <body>
-    <app-welcome name="John"></app-welcome>
+    <input
+      placeholder="Name"
+      type="text"
+      oninput="(
+        function (e) {
+          document
+            .getElementById('app-welcome')
+            .setAttribute('name', this.value)
+        }).call(this)"
+      value="John"
+    />
+
+    <app-welcome id="app-welcome" name="John"></app-welcome>
 
     <app-clock></app-clock>
 
