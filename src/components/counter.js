@@ -1,8 +1,14 @@
 class Counter extends HTMLElement {
+  get count() {
+    return sessionStorage.getItem('count');
+  }
+
+  set count(value) {
+    sessionStorage.setItem('count', value);
+  }
+
   constructor() {
     super();
-
-    this.count = 0;
   }
 
   render() {
