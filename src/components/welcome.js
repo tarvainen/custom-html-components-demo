@@ -1,22 +1,19 @@
-import Component, { registerComponent } from './component';
-
-class Welcome extends Component {
+class Welcome extends HTMLElement {
   static get observedAttributes() {
     return ['name'];
   }
 
-  constructor() {
-    super();
-
-    this.state = { name: '' };
+  get name() {
+    return this.getAttribute('name');
   }
 
   render() {
-    console.log(this.attributes)
-    const { name } = this.state;
+    this.innerHTML = `<h1>Hello ${this.name}!</h1>`;
+  }
 
-    return `<h1>Hello ${name}!</h1>`;
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.render();
   }
 }
 
-module.exports = registerComponent('app-welcome')(Welcome);
+customElements.define('app-welcome', Welcome);
